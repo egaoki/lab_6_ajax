@@ -16,10 +16,27 @@
     </div>
   </div>
   <script>
+
+  function getRandomFifteen(data) {
+
+    const randomCountries = [];
+
+    for(let i = 0; i < 15; i++) {
+      const randomCountry = data[Math.floor(Math.random() * 243)];
+      randomCountries.push(randomCountry);
+    }
+
+
+    return randomCountries;
+  }
+
     function loadData() {
       fetch('ajax_sample.json')
         .then(res => res.json())
-        .then(data => data.map(c => c.code))
+        .then(data => data.map(c => c.name))
+
+        .then(data => getRandomFifteen(data))
+
         .then(data => document.querySelector(".content").innerText = data);
     }
   </script>
